@@ -12,3 +12,16 @@
 
   - Скопировать в `bitrix/php_interface/bitrix-heretic`
   - Подключить в `init.php`: `require_once('bitrix-heretic/index.php');`
+
+## Установка
+
+Некоторые классы возможно использовать только после настроек сайта и/или изменения базы данных:
+
+```
+  BHFactory::install('BHUser');
+```
+
+## Модули
+
+* `BHStorage` - key-value хранилище
+* `BHUser` - Расширенные NoSQL данные о текущем пользователе
