@@ -19,7 +19,7 @@ class BHStorage extends BHProto {
   }
 
   public function save($key, $val) {
-    $query = "INSERT INTO `b_heretic` (`key`, `value`) VALUES ('".addslashes($key)."', '".addslashes($val)."') ON DUPLICATE KEY UPDATE `value` = '".addslashes($val)."'";
+    $query = "INSERT INTO `b_heretic` (`key`, `value`) VALUES ('".addslashes($key)."', '".addslashes(serialize($val))."') ON DUPLICATE KEY UPDATE `value` = '".addslashes(serialize($val))."'";
     $this->db->Query($query);
   }
 

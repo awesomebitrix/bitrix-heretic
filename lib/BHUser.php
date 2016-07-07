@@ -33,8 +33,25 @@ class BHUser extends BHProto {
     return isset($this->userParams->{$param});
   }
 
+  public function __unset($param) {
+    unset($this->userParams->{$param});
+  }
+
+  public function addListItem($list, $item, $val) {
+    $this->userParams->{$list} = (array)$this->userParams->{$list};
+    $this->userParams->{$list}[$item] = $val;
+  }
+
+  public function removeListItem($list, $item) {
+    if(is_array($this->userParams->{$list})) unset($this->userParams->{$list}[$item]);
+  }
+
+  public function isListItem($list, $item) {
+    return isset($this->userParams->{$list}[$item]);
+  }
+
   public function save() {
-    BHStorage::_()->save($this->userKey, serialize($this->userParams));
+    BHStorage::_()->save($this->userKey, $this->userParams);
   }
 
   private function getUserInfo() {
